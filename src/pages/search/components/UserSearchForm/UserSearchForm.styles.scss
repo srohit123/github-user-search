@@ -1,0 +1,24 @@
+.action-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px,
+}
+
+.radio-group {
+  flex-direction: row !important;
+}
+
+.form-control {
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px
+}
+
+.text-field-wrapper {
+  margin: 16px 0px;
+}
+
+.search-query-field {
+  height: 65px;
+}
