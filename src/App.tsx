@@ -1,8 +1,10 @@
 import React from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import AppRoutes from './routes'
-import { SnackBarProvider } from './contexts/useSnackbar'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import AppRoutes from './routes';
+import { SnackBarProvider } from './contexts/useSnackbar';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import StyleVariables from './styles/global.module.scss';
@@ -42,6 +44,10 @@ const App = () => {
             <AppRoutes />
           </ThemeProvider>
         </SnackBarProvider>
+        {
+          process.env.NODE_ENV !== 'production'
+          && <ReactQueryDevtools initialIsOpen={true} />
+        }
       </QueryClientProvider>
     </div>
   )
