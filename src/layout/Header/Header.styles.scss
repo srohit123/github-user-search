@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.header-root {
+  padding: 24px;
+  background-color: $theme-color-primary;
+}
+
+.main-content {
+  margin-top: 80px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
