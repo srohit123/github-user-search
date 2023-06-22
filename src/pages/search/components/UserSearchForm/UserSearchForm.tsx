@@ -22,7 +22,7 @@ const UserSearchForm: React.FC<UserSearchFormProps> = (props) => {
 
   return (
     <Formik 
-      initialValues={{ ...formData, searchBy: SEARCH_BY_OPTIONS.user }}
+      initialValues={formData}
       validationSchema={getSearchFormSchema()}
       onSubmit={onSubmit} 
       onReset={onReset} 
@@ -50,7 +50,6 @@ const UserSearchForm: React.FC<UserSearchFormProps> = (props) => {
               aria-label='Select-Radio'
               aria-description='Search user or organization option'
               className='radio-group'
-              defaultValue={SEARCH_BY_OPTIONS.user}
               onChange={handleChange}
             >
               {Object.keys(SEARCH_BY_OPTIONS).map((key) => (

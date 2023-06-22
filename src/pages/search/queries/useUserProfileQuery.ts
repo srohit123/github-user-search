@@ -57,7 +57,9 @@ export function useUserProfileQuery(
       showErrorMessage(ERRORS.SERVER)
     },
     enabled: false,
-    ...options
+    ...options,
+    staleTime: 4 * 60 * 1000,
+    cacheTime: 4 * 60 * 1000
   });
 
   return query;

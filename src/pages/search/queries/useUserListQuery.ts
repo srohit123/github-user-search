@@ -57,6 +57,8 @@ export function useUserListQuery(
     queryFn,
     enabled: !!params.searchQuery,
     ...options,
+    staleTime: 2 * 60 * 1000,
+    cacheTime: 2 * 60 * 1000
   });
 
   return query;
