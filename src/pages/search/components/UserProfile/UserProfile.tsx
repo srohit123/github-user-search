@@ -20,12 +20,12 @@ import './UserProfile.styles.scss';
 
 const UserProfile: React.FC<UserProfileProps> = ({ username }) => {
   const [showProfileDetails, setShowProfileDetails] = useState<boolean>(false);
-  const { data, isFetching, refetch } = useUserProfileQuery({ username });
+  const { data, isFetching } = useUserProfileQuery({ 
+    username,
+    showProfileDetails
+  });
 
   const updateUserProfile = (showProfileDetails: boolean) => {
-    if (showProfileDetails) {
-      refetch();
-    }
     setShowProfileDetails(showProfileDetails);
   };
 

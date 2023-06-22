@@ -14,7 +14,8 @@ import { useSnackBar } from '../../../contexts/useSnackbar';
 const USER_PROFILE_API = `${BASE_URL}${PROFILE_ENDPOINT}`;
 
 interface UserProfileQueryParams {
-  username?: string;
+  username: string;
+  showProfileDetails: boolean;
 }
 
 export interface UserProfileResponse {
@@ -27,7 +28,7 @@ export interface UserProfileResponse {
   location: string;
 }
 
-export function getUserProfileQuery(params: UserProfileQueryParams = {}) {
+export function getUserProfileQuery(params: UserProfileQueryParams) {
   const queryKey = [USER_PROFILE_CACHE_KEY, params];
   const headers = getHeaders();
 
@@ -50,7 +51,7 @@ export function getUserProfileQuery(params: UserProfileQueryParams = {}) {
 }
 
 export function useUserProfileQuery(
-  params: UserProfileQueryParams = {},
+  params: UserProfileQueryParams,
   options: ReactQueryOptions<UserProfileResponse> = {},
 ) {
   const { queryKey, queryFn } = getUserProfileQuery(params);
@@ -62,10 +63,10 @@ export function useUserProfileQuery(
     onError: () => {
       showErrorMessage(ERRORS.SERVER);
     },
-    enabled: false,
-    ...options,
+    enabled: !!params.showProfileDetails,
     staleTime: 4 * 60 * 1000,
     cacheTime: 4 * 60 * 1000,
+    ...options
   });
 
   return query;
