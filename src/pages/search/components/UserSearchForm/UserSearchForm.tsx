@@ -36,7 +36,11 @@ const UserSearchForm: React.FC<UserSearchFormProps> = props => {
         handleBlur,
         resetForm,
       }) => (
-        <Form style={{ width: '35%' }} role="search">
+        <Form
+          style={{ width: '35%' }}
+          role="search"
+          data-testid="user-search-form"
+        >
           <FormControl className="form-control">
             <FormLabel id="search-by-user-orgnization-radio-group">
               Search by:

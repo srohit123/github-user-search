@@ -15,7 +15,7 @@ const UserCard: React.FC<UserCardProps> = ({
   profileURL,
 }) => {
   return (
-    <Item>
+    <Item data-testid="user-card">
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
