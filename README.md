@@ -1,8 +1,10 @@
 # Github Search User Test App (React + Typescript)
+Note: This is test not-responsive web app.
 
 ## Please follow below steps to run the app:
 - `npm i` (For installing all the required dependencies)
 - `npm run start` (To start the development server)
+- `npm run test` (For running all the test cases)
 
 ## Main Libraries Used:
 - MaterialUI  (for building UI)
