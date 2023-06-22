@@ -1,4 +1,4 @@
-import { UserListBackendResponse } from "../../queries/useUserListQuery";
+import type { UserListBackendResponse } from '../../queries/useUserListQuery';
 
 export interface ItemProps {
   login: string;
@@ -12,4 +12,4 @@ export interface UserListProps {
   currentPage: number;
   totalPage: number;
   onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
-} 
+}

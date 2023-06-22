@@ -1,110 +1,110 @@
-import React from 'react'
-import { 
-  Button, 
-  FormControl, 
-  FormControlLabel, 
-  FormLabel, 
-  Radio, 
-  RadioGroup, 
-  TextField 
+import React from 'react';
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
 } from '@mui/material';
 
 import { Form, Formik } from 'formik';
 
 import { SEARCH_BY_OPTIONS } from '../../constants';
-import { UserSearchFormProps } from './UserSearchForm.props';
+import type { UserSearchFormProps } from './UserSearchForm.props';
 import { getSearchFormSchema } from '../../../../utils/methods';
 
 import './UserSearchForm.styles.scss';
 
-const UserSearchForm: React.FC<UserSearchFormProps> = (props) => {
+const UserSearchForm: React.FC<UserSearchFormProps> = props => {
   const { formData, onSubmit, onReset, disable } = props;
 
   return (
-    <Formik 
+    <Formik
       initialValues={formData}
       validationSchema={getSearchFormSchema()}
-      onSubmit={onSubmit} 
-      onReset={onReset} 
+      onSubmit={onSubmit}
+      onReset={onReset}
     >
-      {({ 
-        values, 
-        touched, 
+      {({
+        values,
+        touched,
         errors,
-        handleChange, 
-        submitForm, 
+        handleChange,
+        submitForm,
         handleBlur,
-        resetForm 
+        resetForm,
       }) => (
-        <Form style={{ width: '35%' }} role='search'>
-          <FormControl className='form-control'>
-            <FormLabel 
-              id="search-by-user-orgnization-radio-group"
-            >
+        <Form style={{ width: '35%' }} role="search">
+          <FormControl className="form-control">
+            <FormLabel id="search-by-user-orgnization-radio-group">
               Search by:
             </FormLabel>
             <RadioGroup
               value={values.searchBy}
-              aria-labelledby='search-by-user-orgnization-radio-group'
-              name='searchBy'
-              aria-label='Select-Radio'
-              aria-description='Search user or organization option'
-              className='radio-group'
+              aria-labelledby="search-by-user-orgnization-radio-group"
+              name="searchBy"
+              aria-label="Select-Radio"
+              aria-description="Search user or organization option"
+              className="radio-group"
               onChange={handleChange}
             >
-              {Object.keys(SEARCH_BY_OPTIONS).map((key) => (
-                <FormControlLabel 
-                  key={key} 
-                  value={key} 
-                  control={<Radio />} 
-                  label={key} 
+              {Object.keys(SEARCH_BY_OPTIONS).map(key => (
+                <FormControlLabel
+                  key={key}
+                  value={key}
+                  control={<Radio />}
+                  label={key}
                 />
               ))}
             </RadioGroup>
           </FormControl>
 
-          <div className='text-field-wrapper'>
+          <div className="text-field-wrapper">
             <TextField
               value={values.searchQuery}
-              name='searchQuery'
-              aria-label='search-field'
-              aria-description='Enter user or organization name.'
+              name="searchQuery"
+              aria-label="search-field"
+              aria-description="Enter user or organization name."
               placeholder={
-                values.searchBy === SEARCH_BY_OPTIONS.user 
-                ? 'Search User' 
-                : 'Search Organization'
+                values.searchBy === SEARCH_BY_OPTIONS.user
+                  ? 'Search User'
+                  : 'Search Organization'
               }
-              autoComplete='off'
-              variant='outlined'
+              autoComplete="off"
+              variant="outlined"
               onBlur={handleBlur}
               onChange={handleChange}
-              className='search-query-field'
+              className="search-query-field"
               error={touched.searchQuery && !!errors.searchQuery}
               helperText={touched.searchQuery && errors.searchQuery}
               fullWidth
             />
           </div>
 
-          <div className='action-wrapper'>
+          <div className="action-wrapper">
             <Button
-              variant='outlined'
-              type='reset'
-              aria-label='reset-button'
-              aria-description='Click this button to reset the values.'
-              onClick={() => resetForm({ 
-                values: { 
-                  searchQuery: '', 
-                  searchBy: SEARCH_BY_OPTIONS.user
-                } 
-              })}
+              variant="outlined"
+              type="reset"
+              aria-label="reset-button"
+              aria-description="Click this button to reset the values."
+              onClick={() =>
+                resetForm({
+                  values: {
+                    searchQuery: '',
+                    searchBy: SEARCH_BY_OPTIONS.user,
+                  },
+                })
+              }
             >
               Reset
             </Button>
             <Button
-              variant='contained'
-              type='submit'
-              aria-label='submit-button'
-              aria-description='Click this button to search the user or organization data.'
+              variant="contained"
+              type="submit"
+              aria-label="submit-button"
+              aria-description="Click this button to search the user or organization data."
               onClick={submitForm}
               disabled={disable}
             >
@@ -115,6 +115,6 @@ const UserSearchForm: React.FC<UserSearchFormProps> = (props) => {
       )}
     </Formik>
   );
-}
+};
 
 export default UserSearchForm;

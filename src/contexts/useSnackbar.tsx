@@ -1,11 +1,7 @@
-import React, { 
-  createContext, 
-  useContext, 
-  useState, 
-  useCallback 
-} from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 
-import { Snackbar, AlertColor } from '@mui/material'; 
+import type { AlertColor } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 
 import { ERRORS } from '../utils/messages';
@@ -21,7 +17,9 @@ interface SnackBarContextProviderProps {
   children?: React.ReactNode;
 }
 
-const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({ children }) => {
+const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({
+  children,
+}) => {
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const [alertType, setAlertType] = useState<AlertColor>('info');
@@ -30,17 +28,17 @@ const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({ children }) 
     setMessage(message);
     setAlertType('error');
     setOpen(true);
-  }, []) 
+  }, []);
 
   const showSuccessMessage = useCallback((message: string) => {
     setMessage(message);
     setAlertType('success');
     setOpen(true);
-  }, []) 
+  }, []);
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <SnackBarContext.Provider value={{ showSuccessMessage, showErrorMessage }}>
@@ -48,14 +46,16 @@ const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({ children }) 
         open={open}
         autoHideDuration={3000}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        onClose={handleClose}>
-        <MuiAlert 
-          elevation={6} 
-          variant='filled'
+        onClose={handleClose}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
           onClose={handleClose}
-          severity={alertType}>
+          severity={alertType}
+        >
           {message}
-        </MuiAlert>    
+        </MuiAlert>
       </Snackbar>
       {children}
     </SnackBarContext.Provider>

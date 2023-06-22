@@ -1,10 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { ReactQueryOptions } from '../../../utils/react-query';
+import type { ReactQueryOptions } from '../../../utils/react-query';
 import { ERRORS } from '../../../utils/messages';
 import { getHeaders } from '../../../utils/methods';
 
-import { BASE_URL, PROFILE_ENDPOINT, USER_PROFILE_CACHE_KEY } from './constants';
+import {
+  BASE_URL,
+  PROFILE_ENDPOINT,
+  USER_PROFILE_CACHE_KEY,
+} from './constants';
 import { useSnackBar } from '../../../contexts/useSnackbar';
 
 const USER_PROFILE_API = `${BASE_URL}${PROFILE_ENDPOINT}`;
@@ -28,13 +32,16 @@ export function getUserProfileQuery(params: UserProfileQueryParams = {}) {
   const headers = getHeaders();
 
   const queryFn = async () => {
-    const response = await fetch(`${USER_PROFILE_API}/${params.username}`, headers);
+    const response = await fetch(
+      `${USER_PROFILE_API}/${params.username}`,
+      headers,
+    );
     if (!response.ok) {
       return Promise.reject(response);
-    } 
+    }
     const data = await response.json();
     return data;
-  }
+  };
 
   return {
     queryKey,
@@ -46,7 +53,6 @@ export function useUserProfileQuery(
   params: UserProfileQueryParams = {},
   options: ReactQueryOptions<UserProfileResponse> = {},
 ) {
-
   const { queryKey, queryFn } = getUserProfileQuery(params);
   const { showErrorMessage } = useSnackBar();
 
@@ -54,12 +60,12 @@ export function useUserProfileQuery(
     queryKey,
     queryFn,
     onError: () => {
-      showErrorMessage(ERRORS.SERVER)
+      showErrorMessage(ERRORS.SERVER);
     },
     enabled: false,
     ...options,
     staleTime: 4 * 60 * 1000,
-    cacheTime: 4 * 60 * 1000
+    cacheTime: 4 * 60 * 1000,
   });
 
   return query;

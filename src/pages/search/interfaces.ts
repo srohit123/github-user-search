@@ -1,4 +1,4 @@
-import { SEARCH_BY_OPTIONS } from "./constants";
+import type { SEARCH_BY_OPTIONS } from './constants';
 
 export interface SearchFormType {
   searchQuery: string;

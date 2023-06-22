@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -31,27 +31,26 @@ const App = () => {
             refetchOnWindowFocus: false,
             refetchOnMount: false,
             refetchOnReconnect: false,
-            retry: false
+            retry: false,
           },
         },
       }),
   );
 
   return (
-    <div className='app'>
+    <div className="app">
       <QueryClientProvider client={reactQueryClient}>
         <SnackBarProvider>
           <ThemeProvider theme={theme}>
             <AppRoutes />
           </ThemeProvider>
         </SnackBarProvider>
-        {
-          process.env.NODE_ENV !== 'production'
-          && <ReactQueryDevtools initialIsOpen={true} />
-        }
+        {process.env.NODE_ENV !== 'production' && (
+          <ReactQueryDevtools initialIsOpen={true} />
+        )}
       </QueryClientProvider>
     </div>
-  )
-}
+  );
+};
 
 export default App;

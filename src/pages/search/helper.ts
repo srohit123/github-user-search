@@ -1,4 +1,4 @@
-import { SEARCH_BY_OPTIONS } from "./constants";
+import { SEARCH_BY_OPTIONS } from './constants';
 
 export const getSearchTypeFromURL = (searchType: string | null): string => {
   switch (searchType) {

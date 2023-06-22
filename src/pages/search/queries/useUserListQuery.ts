@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { ReactQueryOptions } from '../../../utils/react-query';
+import type { ReactQueryOptions } from '../../../utils/react-query';
 
 import { PAGE_LIMIT } from '../constants';
 import { BASE_URL, SEARCH_ENDPOINT, USER_LIST_CACHE_KEY } from './constants';
@@ -32,13 +32,16 @@ export function getUserListQuery(params: UserListQueryParams) {
   const headers = getHeaders();
 
   const queryFn = async () => {
-    const response = await fetch(`${SEARCH_API_URL}?q=${params.searchQuery}+type:${params.searchBy}&page=${params.page}&per_page=${PAGE_LIMIT}`, headers);
+    const response = await fetch(
+      `${SEARCH_API_URL}?q=${params.searchQuery}+type:${params.searchBy}&page=${params.page}&per_page=${PAGE_LIMIT}`,
+      headers,
+    );
     if (!response.ok) {
       return Promise.reject(response);
     }
     const data = await response.json();
     return data;
-  }
+  };
 
   return {
     queryKey,
@@ -58,7 +61,7 @@ export function useUserListQuery(
     enabled: !!params.searchQuery,
     ...options,
     staleTime: 2 * 60 * 1000,
-    cacheTime: 2 * 60 * 1000
+    cacheTime: 2 * 60 * 1000,
   });
 
   return query;

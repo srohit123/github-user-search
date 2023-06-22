@@ -9,24 +9,22 @@ import './Header.styles.scss';
 export const CustomAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   position: 'fixed',
-  padding: '24px' 
-}))
+  padding: '24px',
+}));
 
 const Header: React.FC = () => {
   return (
     <>
-      <header className='header-container'>
-        <CustomAppBar position='fixed'>
-          <Typography variant='h6'>
-            Github User Search App
-          </Typography>
+      <header className="header-container">
+        <CustomAppBar position="fixed">
+          <Typography variant="h6">Github User Search App</Typography>
         </CustomAppBar>
       </header>
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -7,8 +7,8 @@ export const getSearchFormSchema = () => {
   return Yup.object().shape({
     searchBy: Yup.string().trim().required(ERRORS.FIELD_REQUIRED),
     searchQuery: Yup.string().trim().required(ERRORS.FIELD_REQUIRED),
-  })
-}
+  });
+};
 
 export const formatNumber = (number: number) => {
   if (number >= 1000) {
@@ -18,19 +18,19 @@ export const formatNumber = (number: number) => {
     return abbreviatedNumber + suffixes[suffixIndex];
   }
   return number.toString();
-}
+};
 
 export const getHeaders = () => {
-  let auth: {[key: string]: string} = {};
+  const auth: { [key: string]: string } = {};
 
   if (API_RATE_LIMITING_AUTH_TOKEN) {
     auth['Authorization'] = `token ${API_RATE_LIMITING_AUTH_TOKEN}`;
   }
-  
+
   return {
     headers: {
       ...auth,
       'Content-Type': 'application/json',
-    }
-  }  
-}
+    },
+  };
+};
