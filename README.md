@@ -1,6 +1,10 @@
 # Github Search User Test App (React + Typescript)
 Note: This is test not-responsive web app.
 
+# App deployment
+App deployed on Netlify
+URL: https://github-user-search-demo-test.netlify.app/
+
 ## Please follow below steps to run the app:
 - `npm i` (For installing all the required dependencies)
 - `npm run start` (To start the development server)
@@ -22,6 +26,7 @@ the organization details]
 - We have applied pagination for displaying fetched github data.
 - We are not fetching user's profile data at the time of rendering the data. Here, we have one button `View Profile Data`. When user click on this button, only then we are displaying the user profile data.
 - We are maintaining cache using `react-query` library while fetching the search and user profile data. This is used for solving Github API Rate Limiting and also to improve unnecessary API calling. 
+- Search params and pagination data is also reflecting on the URL. So user can share this link or directly search the data as per user, organization and page number.
 
 ## Control Github API Rate limit:
 - We can call Github API with or without authentication. Through authentication, we can send 30 requests/minute while without authentication, we can only send 10 request/minutes.
@@ -29,3 +34,6 @@ So, If you have `personal access token`. You can add this in .env file. [You can
 
 ## Custom Context:
 - We have implemented useSnackbar context for displaying error and success message.
+
+## Futher Improvements:
+- Implement Web responsive UI.
